@@ -6,7 +6,8 @@ public class ProxyServicioEnvioPaquetes : IServicioEnvioPaquetes
     private ServicioEnvioPaquetes servicioReal;
     private Dictionary<string, string> usuariosRegistrados;
     private string usuarioActual;
-
+    
+    // Constructor que inicializa el objeto del servicio real y otras variables necesarias.
     public ProxyServicioEnvioPaquetes()
     {
         servicioReal = new ServicioEnvioPaquetes();
@@ -14,6 +15,8 @@ public class ProxyServicioEnvioPaquetes : IServicioEnvioPaquetes
         usuarioActual = string.Empty;
     }
 
+    // Método que permite enviar un paquete. Antes de llamar al servicio real, se verifica
+    // si hay una sesión iniciada para el usuario actual.
     public void EnviarPaquete()
     {
         // Verificar si el usuario ha iniciado sesión
@@ -28,8 +31,12 @@ public class ProxyServicioEnvioPaquetes : IServicioEnvioPaquetes
         }
     }
 
+    // Método para registrar a un nuevo usuario en el sistema.
     public void RegistrarUsuario()
     {
+        // Código para obtener los datos del nuevo usuario y agregarlo al diccionario
+        // de usuarios registrados.
+        
         Console.WriteLine("----- Registro de Usuario -----");
         Console.Write("Ingrese su nombre: ");
         string nombre = Console.ReadLine();
@@ -54,8 +61,12 @@ public class ProxyServicioEnvioPaquetes : IServicioEnvioPaquetes
         Console.WriteLine("Usuario registrado con éxito.");
     }
 
+    // Método para iniciar sesión en el sistema.
     public void IniciarSesion()
     {
+        // Código para obtener las credenciales de inicio de sesión y verificar si coinciden
+        // con las credenciales de algún usuario registrado en el diccionario.
+        
         Console.WriteLine("----- Inicio de Sesión -----");
         Console.Write("Ingrese su correo electrónico: ");
         string correo = Console.ReadLine();
@@ -76,6 +87,7 @@ public class ProxyServicioEnvioPaquetes : IServicioEnvioPaquetes
         }
     }
 
+    // Método para cerrar la sesión del usuario actual.
     public void CerrarSesion()
     {
         // Cerrar la sesión actual
@@ -83,6 +95,7 @@ public class ProxyServicioEnvioPaquetes : IServicioEnvioPaquetes
         Console.WriteLine("Sesión cerrada.");
     }
 
+    // Método privado que verifica si hay una sesión iniciada para el usuario actual.
     private bool SesionIniciada()
     {
         // Verificar si hay una sesión iniciada
